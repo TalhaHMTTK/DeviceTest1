@@ -1,0 +1,33 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+      <div class="card border-0 shadow-sm">
+        <div class="card-header bg-primary text-white">
+          <h2 class="mb-0">Companies</h2>
+        </div>
+        <div class="card-body">
+          <table class="table table-hover">
+            <thead class="table-light">
+              <tr>
+                <th>Name</th>
+                <th class="text-end">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @companies.each do |company| %>
+                <tr>
+                  <td><%= company.name %></td>
+                  <td class="text-end">
+                    <%= link_to 'Show', company_path(company), class: "btn btn-info btn-sm mx-1" %>
+                    <%= link_to 'Edit', edit_company_path(company), class: "btn btn-warning btn-sm mx-1" %>
+                    <%= link_to 'Delete', company_path(company), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm mx-1" %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
