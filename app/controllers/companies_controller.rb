@@ -1,5 +1,6 @@
 class CompaniesController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_company, only: [:show, :edit, :update]
 
   def new
     @company = Company.new
@@ -20,12 +21,24 @@ class CompaniesController < ApplicationController
   end
 
   def show
-    @company = Company.find(params[:id])
     @users = User.where(company_id: @company.id)
+  end
+
+  def edit
+  end
+
+  def update
+    if @company.update(company_params)
+      redirect_to @company
+    end
   end
   private
 
   def company_params
     params.require(:company).permit(:name)
+  end
+
+  def set_company
+    @company = Company.find(params[:id])
   end
 end

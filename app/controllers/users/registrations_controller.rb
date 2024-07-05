@@ -17,6 +17,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  def destroy
+    @user = User.find(params[:id])
+    if @user.destroy
+      redirect_to company_path(current_user.company_id), notice: 'User was successfully deleted.'
+    else
+      redirect_to company_path(current_user.company_id), alert: 'User could not be deleted.'
+    end
+  end
+
   protected
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(:sign_up, keys: [:role, :super_admin, company_attributes: [:name]])
