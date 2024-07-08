@@ -10,8 +10,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def create
     super do |resource|
-      # Find or create the company by name
-      resource.company = Company.find_or_create_by(name: params[:user][:company_attributes][:name])
+      resource.company = Company.find_or_create_by(company_params)
       # Save the resource (user) with the associated company
       resource.save
     end
@@ -20,18 +19,23 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def destroy
     @user = User.find(params[:id])
     if @user.destroy
-      redirect_to company_path(current_user.company_id), notice: 'User was successfully deleted.'
+      redirect_to company_path(current_user.company_id)
     else
-      redirect_to company_path(current_user.company_id), alert: 'User could not be deleted.'
+      redirect_to company_path(current_user.company_id)
     end
   end
 
   protected
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:role, :super_admin, company_attributes: [:name]])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:role, :super_admin, company_attributes: [:name, :phone]])
   end
 
   def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:role, :super_admin, company_attributes: [:name]])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:role, :super_admin, company_attributes: [:name, :phone]])
+  end
+
+  private 
+  def company_params
+    params.require(:user).require(:company_attributes).permit(:name, :phone)
   end
 end

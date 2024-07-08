@@ -31,8 +31,15 @@
 
         <div class="mb-3">
           <%= f.fields_for :company do |company_fields| %>
-            <%= company_fields.label :name, "Company Name", class: 'form-label' %>
-            <%= company_fields.text_field :name, class: 'form-control' %>
+            <div class="mb-3">
+              <%= company_fields.label :name, "Company Name", class: 'form-label' %>
+              <%= company_fields.text_field :name, class: 'form-control' %>
+            </div>
+
+            <div class="mb-3">
+              <%= company_fields.label :phone, "Contact Details", class: 'form-label' %>
+              <%= company_fields.text_field :phone, class: 'form-control' %>
+            </div>
           <% end %>
         </div>
 

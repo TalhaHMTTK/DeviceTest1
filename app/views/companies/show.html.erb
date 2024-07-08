@@ -10,6 +10,10 @@
             <strong>Name:</strong>
             <%= @company.name %>
           </p>
+          <p>
+            <strong>Contact Details:</strong>
+            <%= @company.phone %>
+          </p>
           <%= link_to 'Edit', edit_company_path(@company), class: "btn btn-warning" %>
           <%= link_to 'Back', companies_path, class: "btn btn-secondary" %>
         </div>
