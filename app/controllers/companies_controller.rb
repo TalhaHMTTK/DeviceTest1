@@ -13,6 +13,7 @@ class CompaniesController < ApplicationController
   end
 
   def index
+    authorize Company
     if current_user.super_admin?
       @companies = Company.all
     else
@@ -21,10 +22,12 @@ class CompaniesController < ApplicationController
   end
 
   def show
-    @users = User.where(company_id: @company.id)
+    authorize @company
+    @users = User.all
   end
 
   def edit
+    authorize @company
   end
 
   def update

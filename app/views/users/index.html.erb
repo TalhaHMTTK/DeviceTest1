@@ -1,0 +1,9 @@
+<h3> Users Details </h3>
+<% @users.each do |user| %>
+  <p>Name: <%= user.email.split('@')[0]%></p>
+  <p>Role: <%=user.role%></p>
+  <p>Company: <%= user.company.name %></p>
+  <p>Signed UP: <%= user.created_at.strftime("%B %d, %Y %H:%M")%></p>
+  <p>Last Time Profile Edited: <%= user.updated_at.strftime("%B %d, %Y %H:%M")%></p>
+  </br>
+<%end%>

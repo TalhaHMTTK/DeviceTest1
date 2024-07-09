@@ -76,3 +76,7 @@ gem 'devise_invitable', '~> 2.0'
 gem "letter_opener", group: :development
 
 gem 'byebug'
+
+gem 'acts_as_tenant'
+
+gem 'pundit'
