@@ -5,3 +5,7 @@
 <p>Company: <%= @user.company.name %></p>
 <p>Signed UP: <%= @user.created_at.strftime("%B %d, %Y %H:%M")%></p>
 <p>Last Time Profile Edited: <%= @user.updated_at.strftime("%B %d, %Y %H:%M")%></p>
+
+<%= button_to "Add Customer", new_customer_path, method: :get, class:"btn btn-primary", params: { user_id: @user.id }%>
+</br>
+<%= button_to "My Customers", customers_path, method: :get, class:"btn btn-secondary", params: { user_id: @user.id }%>

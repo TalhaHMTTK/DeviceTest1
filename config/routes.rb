@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   }
 
   resources :users
-  
+  resources :customers
   resources :companies
   get "up" => "rails/health#show", as: :rails_health_check
 
