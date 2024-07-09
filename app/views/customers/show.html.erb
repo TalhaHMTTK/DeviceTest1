@@ -35,5 +35,8 @@
           <%= button_to "All Customers", customers_path, method: :get, class: "btn btn-primary", params:  {user_id: @user.id } %>
       </div>
     </div>
+      <div class="text-center">
+          <%= button_to "Your Locations", locations_path, method: :get, class: "btn btn-info", params:  {customer_id: @customer.id } %>
+      </div>
   </div>
 </div>

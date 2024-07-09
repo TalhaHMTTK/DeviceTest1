@@ -1,0 +1,35 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          <h2>Location Details</h2>
+        </div>
+        <div class="card-body">
+          <p>
+            <strong>Resident Name: </strong>
+            <%= @customer.name %>
+          </p>
+          <p>
+            <strong>Location: </strong>
+            <%= @location.name %>
+          </p>
+          <p>
+            <strong>Place Info Added at: </strong>
+            <%= @customer.created_at.strftime("%B %d, %Y %H:%M") %>
+          </p>
+          <p>
+            <strong>Last Time Info Updated: </strong>
+            <%= @customer.updated_at.strftime("%B %d, %Y %H:%M") %>
+          </p>
+        </div>
+        <div class="text-center">
+           <%= link_to "Edit", edit_location_path(@location), class: "btn btn-primary" %>
+        </div>
+      </div>
+      <div class="text-center">
+          <%= button_to "All Locations", locations_path, method: :get, class: "btn btn-primary", params:  {customer_id: @customer.id } %>
+      </div>
+    </div>
+  </div>
+</div>
