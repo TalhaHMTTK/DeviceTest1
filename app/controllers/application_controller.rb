@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   set_current_tenant_through_filter
-  before_action :set_tenant
+  before_action :set_tenant, if: -> { current_user }
   include Pundit
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
@@ -21,9 +21,7 @@ class ApplicationController < ActionController::Base
   private
 
   def set_tenant
-    if current_user
-      set_current_tenant(current_user.company)
-    end
+    set_current_tenant(current_user.company)
   end
 
   def user_not_authorized
