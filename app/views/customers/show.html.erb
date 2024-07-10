@@ -2,41 +2,22 @@
   <div class="row justify-content-center">
     <div class="col-md-8">
       <div class="card">
-        <div class="card-header">
+        <div class="card-header text-center">
           <h2>Customer Details</h2>
         </div>
         <div class="card-body">
-          <p>
-            <strong>Name:</strong>
-            <%= @customer.name %>
-          </p>
-          <p>
-            <strong>Contact Details:</strong>
-            <%= @customer.phone %>
-          </p>
-          <p>
-            <strong>Address:</strong>
-            <%= @customer.address %>
-          </p>
-          <p>
-            <strong>Joinning Date:</strong>
-            <%= @customer.created_at.strftime("%B %d, %Y %H:%M") %>
-          </p>
-          <p>
-            <strong>Last Time Info Updated:</strong>
-            <%= @customer.updated_at.strftime("%B %d, %Y %H:%M") %>
-          </p>
+          <p><strong>Name:</strong> <%= @customer.name %></p>
+          <p><strong>Contact Details:</strong> <%= @customer.phone %></p>
+          <p><strong>Address:</strong> <%= @customer.address %></p>
+          <p><strong>Joining Date:</strong> <%= @customer.created_at.strftime("%B %d, %Y %H:%M") %></p>
+          <p><strong>Last Time Info Updated:</strong> <%= @customer.updated_at.strftime("%B %d, %Y %H:%M") %></p>
         </div>
-        <div class="text-center">
-           <%= link_to "Edit", edit_customer_path(@customer), class: "btn btn-primary" %>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-center mb-3">
+          <%= link_to "Edit", edit_customer_path(@customer), class: "btn btn-primary me-md-2" %>
+          <%= button_to "All Customers", customers_path, method: :get, class: "btn btn-secondary", params: { user_id: @user.id } %>
+          <%= button_to "Your Locations", locations_path, method: :get, class: "btn btn-info", params: { customer_id: @customer.id } %>
         </div>
-      </div>
-      <div class="text-center">
-          <%= button_to "All Customers", customers_path, method: :get, class: "btn btn-primary", params:  {user_id: @user.id } %>
       </div>
     </div>
-      <div class="text-center">
-          <%= button_to "Your Locations", locations_path, method: :get, class: "btn btn-info", params:  {customer_id: @customer.id } %>
-      </div>
   </div>
 </div>
