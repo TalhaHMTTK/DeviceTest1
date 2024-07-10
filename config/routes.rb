@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :customers
   resources :companies
   resources :locations
+  resources :devices
   get "up" => "rails/health#show", as: :rails_health_check
 
   root "companies#index"

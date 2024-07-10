@@ -1,0 +1,40 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          <h2>Device Details</h2>
+        </div>
+        <div class="card-body">
+          <p>
+            <strong>Name:</strong>
+            <%= @device.name %>
+          </p>
+          <p>
+            <strong>Company: </strong>
+            <%= @device.company_name %>
+          </p>
+          <p>
+            <strong>Model: </strong>
+            <%= @device.model %>
+          </p>
+          <p>
+            <strong>Installing Date: </strong>
+            <%= @device.created_at.strftime("%B %d, %Y %H:%M") %>
+          </p>
+          <p>
+            <strong>Last Time Device Updated: </strong>
+            <%= @device.updated_at.strftime("%B %d, %Y %H:%M") %>
+          </p>
+        </div>
+        <div class="text-center">
+           <%= link_to "Edit", edit_device_path(@device), class: "btn btn-primary" %>
+        </div>
+      </div>
+      <div class="text-center">
+          <%= button_to "All Devices", devices_path, method: :get, class: "btn btn-primary", params:  {location_id: @location.id } %>
+      </div>
+    </div>
+    
+  </div>
+</div>

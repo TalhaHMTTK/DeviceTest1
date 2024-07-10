@@ -1,0 +1,45 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+      <div class="card border-0 shadow-sm">
+        <div class="card-header bg-primary text-white">
+          <h2 class="mb-0">Devices</h2>
+        </div>
+        <div class="card-body">
+          <table class="table table-hover">
+            <thead class="table-light">
+              <tr>
+                <th>Name </th>
+                <th>Company </th>
+                <th>Model </th>
+                <th>Links</th>
+                <th class="text-end">Install </th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @devices.each do |device| %>
+                <tr>
+                  <td><%= device.name %></td>
+                  <td><%= device.company_name %></td>
+                  <td><%= device.model %></td>
+                  <td>
+                    <div class="d-flex">
+                      <%= button_to "Show", device_path(device), method: :get, class: "btn btn-info me-1", params: { location_id: @location.id } %>
+                      <%= link_to "Edit", edit_device_path(device), class: "btn btn-primary me-1" %>
+                      <%= button_to "Delete", device_path(device), method: :delete, class: "btn btn-danger", params: { location_id: @location.id } %>
+                    </div>
+                  </td>
+
+                  <td class="text-end"><%= device.created_at.strftime("%B %d, %Y %H:%M") %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <div class="text-center">
+            <%= button_to "Add Device", new_device_path, method: :get, class: "btn btn-primary", params:  {location_id: @location.id } %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
