@@ -5,7 +5,9 @@ class User < ApplicationRecord
   belongs_to :company
   has_many :customers
   has_many :tests
+
   acts_as_tenant :company
+  
   accepts_nested_attributes_for :company
   
   def is_admin?

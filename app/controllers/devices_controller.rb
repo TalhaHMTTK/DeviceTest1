@@ -4,6 +4,7 @@ class DevicesController < ApplicationController
   before_action :set_device, only: [:edit, :update, :show, :destroy]
 
   def new
+    @company = Company.find(params[:company_id])
     @device = Device.new
   end
 
@@ -46,6 +47,6 @@ class DevicesController < ApplicationController
   end
 
   def device_params
-    params.require(:device).permit(:name, :company_name, :model, :location_id)
+    params.require(:device).permit(:name, :company_name, :model, :location_id, :company_id)
   end
 end

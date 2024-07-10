@@ -4,6 +4,7 @@ class CustomersController < ApplicationController
   before_action :set_customer, only: [:edit, :update, :show, :destroy]
 
   def new
+    @company = Company.find(params[:company_id])
     @customer = Customer.new
   end
 
@@ -43,7 +44,7 @@ class CustomersController < ApplicationController
   end
 
   def customer_params
-    params.require(:customer).permit(:name, :phone, :address, :user_id)
+    params.require(:customer).permit(:name, :phone, :address, :user_id, :company_id)
   end
 
   def set_customer

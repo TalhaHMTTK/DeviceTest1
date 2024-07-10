@@ -37,7 +37,7 @@
           </table>
         </div>
         <div class="text-center">
-            <%= button_to "Add Device", new_device_path, method: :get, class: "btn btn-primary", params:  {location_id: @location.id } %>
+            <%= button_to "Add Device", new_device_path, method: :get, class: "btn btn-primary", params:  {location_id: @location.id, company_id: @location.company_id } %>
         </div>
       </div>
     </div>

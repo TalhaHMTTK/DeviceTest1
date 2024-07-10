@@ -32,7 +32,7 @@
           </table>
         </div>
         <div class="text-center">
-            <%= button_to "Add Location", new_location_path, method: :get, class: "btn btn-primary", params:  {customer_id: @customer.id } %>
+            <%= button_to "Add Location", new_location_path, method: :get, class: "btn btn-primary", params:  {customer_id: @customer.id, company_id: @customer.company_id } %>
         </div>
       </div>
     </div>

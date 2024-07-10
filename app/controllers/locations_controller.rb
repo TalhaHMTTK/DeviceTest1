@@ -4,6 +4,7 @@ class LocationsController < ApplicationController
   before_action :set_location, only: [:edit, :update, :show, :destroy]
 
   def new
+    @company = Company.find(params[:company_id])
     @location = Location.new
   end
 
@@ -46,6 +47,6 @@ class LocationsController < ApplicationController
   end
 
   def location_params
-    params.require(:location).permit(:name, :customer_id)
+    params.require(:location).permit(:name, :customer_id, :company_id)
   end
 end
