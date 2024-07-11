@@ -4,8 +4,13 @@ class LocationsController < ApplicationController
   before_action :set_location, only: [:edit, :update, :show, :destroy]
 
   def new
-    @company = Company.find(params[:company_id])
-    @location = Location.new
+    if @customer.user_id == current_user.id
+      @company = Company.find(params[:company_id])
+      @location = Location.new
+    else
+      flash[:alert] = "You are not authorized to add the location of other user's customers"
+      redirect_to locations_path(customer_id: @customer.id)
+    end
   end
 
   def create

@@ -37,7 +37,9 @@
           </table>
         </div>
         <div class="text-center">
+        <% if current_user.id == @user.id %>
             <%= button_to "Add Customer", new_customer_path, method: :get, class: "btn btn-primary", params:  {user_id: @user.id, company_id: @user.company_id } %>
+        <%end%>
         </div>
       </div>
     </div>

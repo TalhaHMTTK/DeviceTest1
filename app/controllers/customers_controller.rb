@@ -4,8 +4,13 @@ class CustomersController < ApplicationController
   before_action :set_customer, only: [:edit, :update, :show, :destroy]
 
   def new
-    @company = Company.find(params[:company_id])
-    @customer = Customer.new
+    if @user.id == current_user.id
+      @company = Company.find(params[:company_id])
+      @customer = Customer.new
+    else
+      flash[:alert] = "You are not authorized to create the customer of other users"
+      redirect_to customers_path(user_id: @user.id)
+    end
   end
 
   def create

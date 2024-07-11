@@ -4,8 +4,14 @@ class DevicesController < ApplicationController
   before_action :set_device, only: [:edit, :update, :show, :destroy]
 
   def new
-    @company = Company.find(params[:company_id])
-    @device = Device.new
+    @customer = Customer.find(@location.customer_id)
+    if @customer.user_id == current_user.id 
+      @company = Company.find(params[:company_id])
+      @device = Device.new
+    else 
+      flash[:alert] = "You can't add device on this location"
+      redirect_to devices_path(location_id: @location.id)
+    end
   end
 
   def create
