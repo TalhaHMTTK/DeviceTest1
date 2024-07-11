@@ -1,0 +1,35 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+      <div class="card border-0 shadow-sm">
+        <div class="card-header bg-primary text-white">
+          <h2 class="mb-0">Customers</h2>
+        </div>
+        <div class="card-body">
+          <table class="table table-hover">
+            <thead class="table-light">
+              <tr>
+                <th>Name </th>
+                <th>Contact </th>
+                <th>Address </th>
+                <th>Client Of</th>
+                <th class="text-end">Joined At</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @customers.each do |customer| %>
+                <tr>
+                  <td><%= customer.name %></td>
+                  <td><%= customer.phone %></td>
+                  <td><%= customer.address %></td>
+                  <td><%= customer.user.email.split('@')[0] %></td>
+                  <td class="text-end"><%= customer.created_at.strftime("%B %d, %Y %H:%M") %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

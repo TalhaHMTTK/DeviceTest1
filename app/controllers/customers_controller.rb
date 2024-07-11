@@ -42,6 +42,14 @@ class CustomersController < ApplicationController
     redirect_to customers_path(user_id: @user.id)
   end
 
+  def all_customers
+    if current_user.role == "admin"
+      @customers = Customer.all
+    else 
+      redirect_to root_path
+    end
+  end
+
   private
 
   def set_user

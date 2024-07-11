@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   resources :companies
   resources :locations
   resources :devices
+
+  get '/all_customers', to: 'customers#all_customers'
   get "up" => "rails/health#show", as: :rails_health_check
 
   root "companies#index"
