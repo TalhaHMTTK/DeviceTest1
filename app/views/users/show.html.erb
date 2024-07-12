@@ -12,8 +12,10 @@
           <p><strong>Signed Up:</strong> <%= @user.created_at.strftime("%B %d, %Y %H:%M") %></p>
           <p><strong>Last Profile Edit:</strong> <%= @user.updated_at.strftime("%B %d, %Y %H:%M") %></p>
           <div class="d-grid gap-2 d-md-flex justify-content-md-center mt-3">
-            <%= button_to "Add Customer", new_customer_path, method: :get, class: "btn btn-primary me-md-2", params: { user_id: @user.id } %>
-            <%= button_to "My Customers", customers_path, method: :get, class: "btn btn-secondary", params: { user_id: @user.id } %>
+            <% if @user.id == current_user.id %>
+              <%= button_to "Add Customer", new_customer_path, method: :get, class: "btn btn-primary me-md-2", params: { user_id: @user.id } %>
+            <% end %>
+            <%= button_to "All Customers", customers_path, method: :get, class: "btn btn-secondary", params: { user_id: @user.id } %>
           </div>
         </div>
       </div>

@@ -32,7 +32,9 @@
           </table>
         </div>
         <div class="text-center">
+          <% if @customer.user_id == current_user.id %>
             <%= button_to "Add Location", new_location_path, method: :get, class: "btn btn-primary", params:  {customer_id: @customer.id } %>
+          <%end%>
         </div>
       </div>
     </div>

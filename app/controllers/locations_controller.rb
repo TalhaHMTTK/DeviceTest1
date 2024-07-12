@@ -4,31 +4,37 @@ class LocationsController < ApplicationController
   before_action :set_location, only: [:edit, :update, :show, :destroy]
 
   def new
+    authorize @customer, :location_new?
     @location = Location.new
   end
 
   def create
     @location = Location.new(location_params)
+    authorize @location
     if @location.save
-      @customer = Customer.find(@location.customer_id)
       redirect_to location_path(id: @location.id, customer_id: @customer.id)
     end
   end
 
   def index
+    authorize @customer, :location_index?
     @locations = Location.where(customer_id: @customer.id)
   end
 
-  def edit; end
+  def edit
+    authorize @location
+  end
 
   def update
+    authorize @location
     if @location.update(location_params)
-      @customer = Customer.find(@location.customer_id)
       redirect_to location_path(id: @location.id, customer_id: @customer.id)
     end
   end
 
-  def show; end
+  def show
+    authorize @location
+  end
 
   def destroy
     @location.destroy
@@ -46,6 +52,6 @@ class LocationsController < ApplicationController
   end
 
   def location_params
-    params.require(:location).permit(:name, :customer_id)
+    params.require(:location).permit(:name, :customer_id, :company_id)
   end
 end

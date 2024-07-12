@@ -15,7 +15,7 @@
         <div class="d-grid gap-2 d-md-flex justify-content-md-center mb-3">
           <%= link_to "Edit", edit_customer_path(@customer), class: "btn btn-primary me-md-2" %>
           <%= button_to "All Customers", customers_path, method: :get, class: "btn btn-secondary", params: { user_id: @user.id } %>
-          <%= button_to "Your Locations", locations_path, method: :get, class: "btn btn-info", params: { customer_id: @customer.id } %>
+          <%= button_to "All Locations", locations_path, method: :get, class: "btn btn-info", params: { customer_id: @customer.id } %>
         </div>
       </div>
     </div>

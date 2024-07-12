@@ -12,9 +12,8 @@
                 <th>Name </th>
                 <th>Contact </th>
                 <th>Address </th>
-                <th>Links</th>
                 <th>Client Of</th>
-                <th class="text-end">Joined </th>
+                <th class="text-end">Joined At</th>
               </tr>
             </thead>
             <tbody>
@@ -23,24 +22,12 @@
                   <td><%= customer.name %></td>
                   <td><%= customer.phone %></td>
                   <td><%= customer.address %></td>
-                  <td>
-                    <div class="d-flex">
-                      <%= button_to "Show", customer_path(customer), method: :get, class: "btn btn-info me-1", params: { user_id: @user.id } %>
-                      <%= link_to "Edit", edit_customer_path(customer), class: "btn btn-primary me-1" %>
-                      <%= button_to "Delete", customer_path(customer), method: :delete, class: "btn btn-danger", params: { user_id: @user.id } %>
-                    </div>
-                  </td>
-                  <td><%= customer.user_id %></td>
+                  <td><%= customer.user.email.split('@')[0] %></td>
                   <td class="text-end"><%= customer.created_at.strftime("%B %d, %Y %H:%M") %></td>
                 </tr>
               <% end %>
             </tbody>
           </table>
-        </div>
-        <div class="text-center">
-        <% if current_user.id == @user.id %>
-            <%= button_to "Add Customer", new_customer_path, method: :get, class: "btn btn-primary", params:  {user_id: @user.id, company_id: @user.company_id } %>
-        <%end%>
         </div>
       </div>
     </div>
