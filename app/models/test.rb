@@ -1,4 +1,5 @@
 class Test < ApplicationRecord
+  include Tenantable
   enum :status, { planned: 0, working: 1, completed: 2 }
   belongs_to :device
   belongs_to :user
