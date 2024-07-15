@@ -5,7 +5,7 @@ class CompanyPolicy < ApplicationPolicy
       if user.super_admin?
         scope.all
       else
-        user.where(id: user.company_id)
+        scope.where(id: user.company_id)
       end
     end
   end

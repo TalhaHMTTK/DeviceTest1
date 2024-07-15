@@ -12,7 +12,4 @@ class User < ApplicationRecord
   
   accepts_nested_attributes_for :company
 
-  def super_admin?
-    super_admin == true
-  end
 end
