@@ -24,7 +24,7 @@
                   <td><%= device.model %></td>
                   <td>
                     <div class="d-flex">
-                      <%= button_to "Show", device_path(device), method: :get, class: "btn btn-info me-1", params: { location_id: @location.id } %>
+                      <%= button_to "Show", device_path(device), method: :get, class: "btn btn-info me-1" %>
                       <%= link_to "Edit", edit_device_path(device), class: "btn btn-primary me-1" %>
                       <%= button_to "Delete", device_path(device), method: :delete, class: "btn btn-danger", params: { location_id: @location.id } %>
                     </div>

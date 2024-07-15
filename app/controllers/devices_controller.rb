@@ -1,6 +1,6 @@
 class DevicesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_location, only: [:new, :index, :show, :destroy]
+  before_action :set_location, only: [:new, :index, :destroy]
   before_action :set_device, only: [:edit, :update, :show, :destroy]
 
   def new
@@ -12,14 +12,13 @@ class DevicesController < ApplicationController
     @device = Device.new(device_params)
     authorize @device
     if @device.save
-      @location = Location.find(@device.location_id)
-      redirect_to device_path(id: @device.id, location_id: @location.id)
+      redirect_to device_path(@device)
     end
   end
 
   def index
     authorize @location, :device_index?
-    @devices = Device.where(location_id: @location.id)
+    @devices = @location.devices
   end
 
   def edit
@@ -29,8 +28,7 @@ class DevicesController < ApplicationController
   def update
     authorize @device
     if @device.update(device_params)
-      @location = Location.find(@device.location_id)
-      redirect_to device_path(id: @device.id, location_id: @location.id)
+      redirect_to device_path(@device)
     end
   end
 

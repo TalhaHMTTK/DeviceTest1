@@ -11,14 +11,6 @@ class User < ApplicationRecord
   enum role: { tester: 0, admin: 1 }
   
   accepts_nested_attributes_for :company
-  
-  def admin?
-    role == "admin"
-  end
-
-  def tester?
-    role == "tester"
-  end
 
   def super_admin?
     super_admin == true

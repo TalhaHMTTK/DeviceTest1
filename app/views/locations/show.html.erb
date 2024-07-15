@@ -6,14 +6,14 @@
           <h2>Location Details</h2>
         </div>
         <div class="card-body">
-          <p><strong>Resident Name: </strong><%= @customer.name %></p>
+          <p><strong>Resident Name: </strong><%= @location.customer.name %></p>
           <p><strong>Location: </strong><%= @location.name %></p>
-          <p><strong>Place Info Added at: </strong><%= @customer.created_at.strftime("%B %d, %Y %H:%M") %></p>
-          <p><strong>Last Time Info Updated: </strong><%= @customer.updated_at.strftime("%B %d, %Y %H:%M") %></p>
+          <p><strong>Place Info Added at: </strong><%= @location.created_at.strftime("%B %d, %Y %H:%M") %></p>
+          <p><strong>Last Time Info Updated: </strong><%= @location.updated_at.strftime("%B %d, %Y %H:%M") %></p>
         </div>
         <div class="d-grid gap-2 d-md-flex justify-content-md-center mb-3">
           <%= link_to "Edit", edit_location_path(@location), class: "btn btn-primary me-md-2" %>
-          <%= button_to "All Locations", locations_path, method: :get, class: "btn btn-secondary", params: { customer_id: @customer.id } %>
+          <%= button_to "All Locations", locations_path, method: :get, class: "btn btn-secondary", params: { customer_id: @location.customer_id } %>
           <%= button_to "Devices", devices_path, method: :get, class: "btn btn-success", params: { location_id: @location.id } %>
         </div>
       </div>

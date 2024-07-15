@@ -1,6 +1,6 @@
 class LocationsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_customer, only: [:new, :index, :show, :destroy]
+  before_action :set_customer, only: [:new, :index, :destroy]
   before_action :set_location, only: [:edit, :update, :show, :destroy]
 
   def new
@@ -12,13 +12,13 @@ class LocationsController < ApplicationController
     @location = Location.new(location_params)
     authorize @location
     if @location.save
-      redirect_to location_path(id: @location.id, customer_id: @customer.id)
+      redirect_to location_path(@location)
     end
   end
 
   def index
     authorize @customer, :location_index?
-    @locations = Location.where(customer_id: @customer.id)
+    @locations = @customer.locations
   end
 
   def edit
@@ -28,7 +28,7 @@ class LocationsController < ApplicationController
   def update
     authorize @location
     if @location.update(location_params)
-      redirect_to location_path(id: @location.id, customer_id: @customer.id)
+      redirect_to location_path(@location)
     end
   end
 

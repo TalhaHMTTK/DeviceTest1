@@ -20,9 +20,9 @@
                   <td><%= location.name %></td>
                   <td>
                     <div class="d-flex">
-                      <%= button_to "Show", location_path(location), method: :get, class: "btn btn-info me-1", params: { customer_id: @customer.id } %>
+                      <%= button_to "Show", location_path(location), method: :get, class: "btn btn-info me-1" %>
                       <%= link_to "Edit", edit_location_path(location), class: "btn btn-primary me-1" %>
-                      <%= button_to "Delete", location_path(location), method: :delete, class: "btn btn-danger", params: { customer_id: @customer.id } %>
+                      <%= button_to "Delete", location_path(location), method: :delete, class: "btn btn-danger", params: { customer_id: location.customer_id } %>
                     </div>
                   </td>
                   <td class="text-end"><%= location.created_at.strftime("%B %d, %Y %H:%M") %></td>

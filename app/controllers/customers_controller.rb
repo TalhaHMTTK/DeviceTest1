@@ -1,6 +1,6 @@
 class CustomersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user, only: [:new, :index, :show, :destroy]
+  before_action :set_user, only: [:new, :index, :destroy]
   before_action :set_customer, only: [:edit, :update, :show, :destroy]
 
   def new
@@ -12,14 +12,13 @@ class CustomersController < ApplicationController
     @customer = Customer.new(customer_params)
     authorize @customer
     if @customer.save
-      @user = User.find(@customer.user_id)
-      redirect_to customer_path(id: @customer.id, user_id: @user.id)
+      redirect_to customer_path(@customer)
     end
   end
 
   def index
     authorize @user, :customer_index?
-    @customers = Customer.where(user_id: @user.id)
+    @customers = @user.customers
   end
 
   def edit
@@ -29,8 +28,7 @@ class CustomersController < ApplicationController
   def update
     authorize @customer
     if @customer.update(customer_params)
-      @user = User.find(@customer.user_id)
-      redirect_to customer_path(id: @customer.id, user_id: @user.id)
+      redirect_to customer_path(@customer)
     end
   end
 
